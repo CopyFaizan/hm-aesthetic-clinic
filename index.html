@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HM Aesthetic Clinic — Health & Medicine Aesthetic Clinic</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg:          #FAF8F4;
+      --bg-alt:      #F0EBE5;
+      --bg-purple:   #F5EFF9;
+      --dark:        #1C1428;
+      --mid:         #6B6478;
+      --light:       #B0A8BC;
+      --purple:      #7B4FA0;
+      --purple-deep: #5A2D82;
+      --purple-pale: #EDE5F5;
+      --gold:        #C49829;
+      --gold-light:  #D4AA4A;
+      --script:      'Great Vibes', cursive;
+      --serif:       'Playfair Display', Georgia, serif;
+      --sans:        'DM Sans', -apple-system, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--sans); background: var(--bg); color: var(--dark); line-height: 1.6; overflow-x: hidden; }
+
+    /* ── NAV ─────────────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.1rem 4rem;
+      background: rgba(250,248,244,.96); backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(123,79,160,.07);
+      transition: box-shadow .3s;
+    }
+    nav.scrolled { box-shadow: 0 4px 24px rgba(0,0,0,.07); }
+    .nav-logo img { height: 46px; width: auto; display: block; }
+    .nav-links { display: flex; list-style: none; gap: 2.5rem; }
+    .nav-links a {
+      font-size: .75rem; font-weight: 500; letter-spacing: .13em; text-transform: uppercase;
+      color: var(--dark); text-decoration: none; transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--purple); }
+    .btn-nav {
+      font-size: .75rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase;
+      color: #fff; background: var(--purple-deep); text-decoration: none;
+      padding: .65rem 1.5rem; transition: background .2s, transform .2s;
+    }
+    .btn-nav:hover { background: var(--purple); transform: translateY(-1px); }
+
+    /* ── HERO ────────────────────────────────────────────── */
+    .hero {
+      min-height: 100vh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 8rem 2rem 5rem; background: var(--bg);
+    }
+    .hero-headline {
+      font-family: var(--serif); font-size: clamp(2.4rem,4.5vw,4.2rem);
+      font-weight: 500; line-height: 1.2; text-align: center;
+      margin-bottom: 2.5rem; color: var(--dark);
+    }
+    .hero-headline .script-accent {
+      font-family: var(--script); font-size: 1.5em;
+      color: var(--purple); font-weight: 400; display: block;
+      line-height: 1.1; letter-spacing: .01em;
+    }
+    .hero-headline em { font-style: italic; color: var(--purple); }
+    .hero-headline strong { font-weight: 600; }
+
+    .hero-frame-wrap { position: relative; width: min(820px,92vw); }
+    .hero-frame {
+      position: relative; width: 100%; aspect-ratio: 16/9;
+      overflow: hidden; background: var(--bg-alt);
+    }
+    .hero-frame img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; display: block; }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(28,20,40,.55) 0%, transparent 55%);
+    }
+    .hero-caption {
+      position: absolute; bottom: 1.6rem; left: 0; right: 0; text-align: center;
+      font-family: var(--script); font-size: clamp(1.6rem,3vw,2.6rem);
+      color: #fff; text-shadow: 0 2px 20px rgba(0,0,0,.45);
+    }
+    .hero-tag {
+      position: absolute; writing-mode: vertical-rl;
+      font-size: .6rem; letter-spacing: .3em; text-transform: uppercase;
+      color: var(--mid); user-select: none;
+    }
+    .hero-tag.left  { left: -2.4rem; top: 50%; transform: translateY(-50%) rotate(180deg); }
+    .hero-tag.right { right: -2.4rem; top: 50%; transform: translateY(-50%); }
+
+    .hero-actions { margin-top: 2.5rem; display: flex; gap: 1.25rem; align-items: center; flex-wrap: wrap; justify-content: center; }
+    .btn-primary {
+      font-size: .78rem; font-weight: 500; letter-spacing: .13em; text-transform: uppercase;
+      color: #fff; background: var(--purple-deep); text-decoration: none;
+      padding: .95rem 2.4rem; display: inline-block; transition: all .25s;
+    }
+    .btn-primary:hover { background: var(--purple); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(90,45,130,.28); }
+    .btn-ghost {
+      font-size: .78rem; font-weight: 400; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--purple); text-decoration: none;
+      display: inline-flex; align-items: center; gap: .5rem; transition: color .2s;
+    }
+    .btn-ghost:hover { color: var(--purple-deep); }
+    .btn-ghost svg { width: 14px; height: 14px; transition: transform .2s; }
+    .btn-ghost:hover svg { transform: translateX(3px); }
+
+    /* ── MARQUEE ─────────────────────────────────────────── */
+    .marquee-band { background: var(--purple-deep); padding: 1.1rem 0; overflow: hidden; }
+    .marquee-track { display: flex; animation: marquee 30s linear infinite; white-space: nowrap; }
+    .marquee-item {
+      font-family: var(--script); font-size: 1.3rem;
+      color: rgba(255,255,255,.85); padding: 0 1.5rem;
+      display: inline-flex; align-items: center; gap: 1.5rem;
+    }
+    .marquee-dot { width: 4px; height: 4px; background: var(--gold-light); border-radius: 50%; flex-shrink: 0; }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* ── SHARED ──────────────────────────────────────────── */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+    .section { padding: 7rem 0; }
+    .section-label {
+      font-family: var(--script); font-size: 1.6rem; letter-spacing: .01em;
+      color: var(--purple); margin-bottom: .4rem; display: block;
+      line-height: 1.2;
+    }
+    .section-title {
+      font-family: var(--serif); font-size: clamp(2rem,4vw,3.2rem);
+      font-weight: 500; line-height: 1.2; color: var(--dark); margin-bottom: 1.5rem;
+    }
+    .section-title em  { font-style: italic; color: var(--purple); font-weight: 400; }
+    .section-title strong { font-weight: 700; }
+
+    /* ── ABOUT ───────────────────────────────────────────── */
+    .about { background: var(--bg); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+
+    .about-images { position: relative; height: 520px; }
+    .about-img-a {
+      position: absolute; top: 0; left: 0; width: 68%; height: 72%;
+      object-fit: cover; filter: grayscale(10%);
+    }
+    .about-img-b {
+      position: absolute; bottom: 0; right: 0; width: 54%; height: 56%;
+      object-fit: cover; filter: grayscale(10%);
+      border: 5px solid var(--bg);
+    }
+    .about-badge {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+      width: 96px; height: 96px; border-radius: 50%;
+      background: var(--purple-deep); z-index: 2;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .about-badge svg { width: 52px; height: 52px; }
+
+    .about-ring {
+      position: absolute; top: -1.5rem; right: -1.5rem;
+      width: 120px; height: 120px; z-index: 1;
+    }
+    .about-ring text { fill: var(--mid); font-size: 6.5px; font-family: var(--sans); letter-spacing: 3.8px; }
+
+    .about-text p { font-size: 1.02rem; color: var(--mid); line-height: 1.88; margin-bottom: 1.4rem; }
+
+    .stats-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 2.5rem; padding-top: 2.5rem; border-top: 1px solid var(--bg-alt); }
+    .stat-num { font-family: var(--serif); font-size: 2.6rem; font-weight: 500; color: var(--purple); line-height: 1; margin-bottom: .4rem; }
+    .stat-lbl { font-size: .7rem; letter-spacing: .18em; text-transform: uppercase; color: var(--mid); }
+
+    /* ── TREATMENTS ──────────────────────────────────────── */
+    .treatments-section { background: var(--bg-alt); padding: 7rem 0; }
+    .treatments-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3.5rem; gap: 2rem; }
+    .treatments-header-left { max-width: 540px; }
+
+    .cards-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.25rem; margin-bottom: 4rem; }
+    .t-card {
+      background: var(--bg); padding: 2.4rem 1.8rem 4rem;
+      position: relative; transition: all .35s;
+      border: 1px solid transparent; cursor: default;
+    }
+    .t-card:hover { transform: translateY(-7px); box-shadow: 0 24px 56px rgba(90,45,130,.1); border-color: rgba(123,79,160,.15); }
+    .t-card:hover .t-icon-line { stroke: var(--purple); }
+    .t-icon { margin-bottom: 1.4rem; height: 50px; display: flex; align-items: flex-start; }
+    .t-icon svg { width: 42px; height: 42px; }
+    .t-icon-line { stroke: var(--dark); transition: stroke .3s; }
+    .t-name { font-size: .72rem; font-weight: 500; letter-spacing: .17em; text-transform: uppercase; color: var(--dark); margin-bottom: .6rem; }
+    .t-desc { font-size: .82rem; color: var(--mid); line-height: 1.72; }
+    .t-link {
+      position: absolute; bottom: 1.7rem; right: 1.7rem;
+      display: flex; align-items: center; gap: .35rem;
+      font-size: .67rem; letter-spacing: .13em; text-transform: uppercase;
+      color: var(--light); text-decoration: none; transition: color .2s;
+    }
+    .t-link:hover { color: var(--purple); }
+    .t-link svg { width: 13px; height: 13px; transform: rotate(-45deg); transition: transform .2s; }
+    .t-link:hover svg { transform: rotate(-45deg) translate(2px,-2px); }
+
+    /* full treatment list */
+    .all-treatments { background: var(--bg); border: 1px solid rgba(123,79,160,.12); padding: 2.5rem 3rem; }
+    .all-treatments-title { font-family: var(--script); font-size: 2rem; color: var(--purple); margin-bottom: 1.2rem; }
+    .treatments-list { display: grid; grid-template-columns: repeat(4,1fr); gap: .6rem 2rem; list-style: none; }
+    .treatments-list li {
+      font-size: .83rem; color: var(--mid); padding: .45rem 0;
+      border-bottom: 1px solid var(--bg-alt);
+      display: flex; align-items: center; gap: .6rem;
+    }
+    .treatments-list li::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
+
+    /* ── WHY US ──────────────────────────────────────────── */
+    .why-us { background: var(--bg); }
+    .why-center { text-align: center; max-width: 580px; margin: 0 auto 4rem; }
+    .why-center p { font-size: 1rem; color: var(--mid); line-height: 1.82; }
+    .features-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 3rem; }
+    .feat { text-align: center; }
+    .feat-ico {
+      width: 68px; height: 68px; background: var(--purple-pale); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;
+    }
+    .feat-ico svg { width: 30px; height: 30px; }
+    .feat h3 { font-family: var(--script); font-size: 1.8rem; font-weight: 400; color: var(--dark); margin-bottom: .5rem; }
+    .feat p  { font-size: .88rem; color: var(--mid); line-height: 1.82; }
+
+    /* ── BEFORE/AFTER ────────────────────────────────────── */
+    .ba-section { background: var(--bg-alt); }
+    .ba-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1.5rem; margin-top: 3.5rem; }
+    .ba-card { position: relative; overflow: hidden; }
+    .ba-card img { width: 100%; height: 360px; object-fit: cover; display: block; transition: transform .45s; }
+    .ba-card:hover img { transform: scale(1.04); }
+    .ba-label {
+      position: absolute; bottom: 1.4rem; left: 1.4rem;
+      background: rgba(90,45,130,.88); color: #fff;
+      padding: .45rem .95rem; font-size: .7rem; letter-spacing: .12em; text-transform: uppercase;
+    }
+
+    /* ── TESTIMONIALS ────────────────────────────────────── */
+    .testi-section { background: var(--dark); padding: 7rem 0; }
+    .testi-section .section-label { color: var(--gold-light); }
+    .testi-section .section-title  { color: #fff; }
+    .testi-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem; margin-top: 3.5rem; }
+    .testi-card {
+      background: rgba(255,255,255,.045); border: 1px solid rgba(255,255,255,.07);
+      padding: 2.4rem; transition: background .3s, border-color .3s;
+    }
+    .testi-card:hover { background: rgba(123,79,160,.16); border-color: rgba(123,79,160,.3); }
+    .stars { display: flex; gap: .25rem; margin-bottom: 1.4rem; }
+    .star { color: var(--gold); font-size: .9rem; }
+    .testi-quote {
+      font-family: var(--serif); font-size: 1rem; font-style: italic;
+      line-height: 1.85; color: rgba(255,255,255,.82); margin-bottom: 1.8rem;
+    }
+    .testi-author { font-size: .72rem; letter-spacing: .18em; text-transform: uppercase; color: var(--gold-light); }
+
+    /* ── CTA ─────────────────────────────────────────────── */
+    .cta-section { background: var(--bg-purple); padding: 6rem 0; }
+    .cta-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .cta-image { position: relative; height: 430px; overflow: hidden; }
+    .cta-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .cta-content p { font-size: .98rem; color: var(--mid); line-height: 1.85; margin-bottom: 1.8rem; }
+    .cta-detail { display: flex; align-items: center; gap: .75rem; font-size: .88rem; color: var(--dark); margin-bottom: .7rem; }
+    .cta-detail svg { width: 17px; height: 17px; flex-shrink: 0; }
+
+    /* ── FOOTER ──────────────────────────────────────────── */
+    footer { background: #0E0B18; color: rgba(255,255,255,.68); padding: 5rem 0 2rem; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1.1fr 1.1fr 1.6fr; gap: 4rem; margin-bottom: 4rem; }
+    .footer-logo { height: 58px; width: auto; margin-bottom: 1.4rem; display: block; }
+    .footer-tagline { font-family: var(--script); font-size: 1.5rem; color: rgba(255,255,255,.45); margin-bottom: 1.4rem; line-height: 1.5; }
+    .footer-contact { display: flex; align-items: flex-start; gap: .7rem; font-size: .83rem; margin-bottom: .65rem; }
+    .footer-contact svg { width: 15px; height: 15px; flex-shrink: 0; margin-top: 2px; opacity: .55; }
+    .footer-heading { font-size: .67rem; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 1.4rem; }
+    .f-links { list-style: none; display: flex; flex-direction: column; gap: .7rem; }
+    .f-links a { font-size: .83rem; color: rgba(255,255,255,.55); text-decoration: none; transition: color .2s; }
+    .f-links a:hover { color: var(--gold-light); }
+    .nl-form { display: flex; margin-bottom: 2rem; }
+    .nl-form input {
+      flex: 1; padding: .65rem .9rem; background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.1); border-right: none;
+      color: #fff; font-family: var(--sans); font-size: .83rem; outline: none;
+    }
+    .nl-form input::placeholder { color: rgba(255,255,255,.28); }
+    .nl-form button {
+      padding: .65rem 1rem; background: var(--purple-deep); color: #fff;
+      border: none; font-family: var(--sans); font-size: .75rem; font-weight: 500;
+      letter-spacing: .09em; text-transform: uppercase; cursor: pointer; transition: background .2s;
+    }
+    .nl-form button:hover { background: var(--purple); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,.07); padding-top: 2rem;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: .78rem; color: rgba(255,255,255,.3);
+    }
+    .social-row { display: flex; gap: 1rem; }
+    .social-row a { color: rgba(255,255,255,.38); text-decoration: none; transition: color .2s; }
+    .social-row a:hover { color: var(--gold-light); }
+
+    /* ── WHATSAPP FLOAT ──────────────────────────────────── */
+    .wa-float {
+      position: fixed; bottom: 2rem; right: 2rem; z-index: 99;
+      width: 56px; height: 56px; border-radius: 50%; background: #25D366;
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none; box-shadow: 0 4px 22px rgba(37,211,102,.4);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .wa-float:hover { transform: scale(1.1); box-shadow: 0 7px 30px rgba(37,211,102,.5); }
+    .wa-float svg { width: 28px; height: 28px; fill: #fff; }
+
+    /* ── SCROLL ANIMATIONS ───────────────────────────────── */
+    .fade-up { opacity: 0; transform: translateY(32px); transition: opacity .7s ease, transform .7s ease; }
+    .fade-up.in { opacity: 1; transform: translateY(0); }
+    .fade-up:nth-child(2) { transition-delay: .12s; }
+    .fade-up:nth-child(3) { transition-delay: .22s; }
+    .fade-up:nth-child(4) { transition-delay: .32s; }
+
+    /* ── RESPONSIVE ──────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      nav { padding: 1.1rem 2rem; }
+      .cards-grid { grid-template-columns: repeat(2,1fr); }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+      .treatments-list { grid-template-columns: repeat(2,1fr); }
+    }
+    @media (max-width: 768px) {
+      .nav-links, .btn-nav { display: none; }
+      .hero { padding: 5.5rem 1.25rem 3rem; }
+      .hero-tag { display: none; }
+      .about-grid, .cta-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .about-images { height: 320px; }
+      .about-img-a { width: 72%; height: 75%; }
+      .about-img-b { width: 56%; height: 56%; }
+      .cards-grid { grid-template-columns: 1fr; }
+      .testi-grid { grid-template-columns: 1fr; }
+      .features-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .ba-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+      .treatments-header { flex-direction: column; align-items: flex-start; }
+      .treatments-list { grid-template-columns: 1fr 1fr; }
+      .all-treatments { padding: 2rem 1.5rem; }
+    }
+    @media (max-width: 480px) {
+      .stats-row { grid-template-columns: repeat(3,1fr); gap: .75rem; }
+      .treatments-list { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAVIGATION ──────────────────────────────────────────── -->
+<nav id="navbar">
+  <a href="#" class="nav-logo"><img src="Logo-removebg-preview.png" alt="HM Aesthetic Clinic"></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#treatments">Treatments</a></li>
+    <li><a href="#results">Results</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="https://wa.me/923411242777" class="btn-nav" target="_blank" rel="noopener">Book Now</a>
+</nav>
+
+<!-- ── HERO ────────────────────────────────────────────────── -->
+<section class="hero">
+  <h1 class="hero-headline fade-up">
+    <span class="script-accent">Captivate &amp; Rejuvenate</span>
+    with <strong>HM Aesthetic Clinic</strong>
+  </h1>
+
+  <div class="hero-frame-wrap fade-up">
+    <span class="hero-tag left">CAPTIVATE</span>
+    <div class="hero-frame">
+      <img src="hero-bg.jpg" alt="HM Aesthetic Clinic — Expert Aesthetic Treatments for Men & Women">
+      <div class="hero-overlay"></div>
+      <p class="hero-caption">Discover a new and revamped you.</p>
+    </div>
+    <span class="hero-tag right">REJUVENATE</span>
+  </div>
+
+  <div class="hero-actions fade-up">
+    <a href="https://wa.me/923411242777" class="btn-primary" target="_blank" rel="noopener">Book Your Appointment</a>
+    <a href="#treatments" class="btn-ghost">
+      Explore Treatments
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- ── MARQUEE ──────────────────────────────────────────────── -->
+<div class="marquee-band" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="marquee-item">Carbon Laser Peel <span class="marquee-dot"></span></span>
+    <span class="marquee-item">PRP / PRF <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Microneedling <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Nd-YAG Laser <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Hydra Facials Plus <span class="marquee-dot"></span></span>
+    <span class="marquee-item">BB / CC Glow <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Fillers &amp; Botox <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Thread Lifts <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Non-Surgical Fat Removal <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Lips &amp; Face Augmentation <span class="marquee-dot"></span></span>
+    <!-- duplicate for seamless loop -->
+    <span class="marquee-item">Carbon Laser Peel <span class="marquee-dot"></span></span>
+    <span class="marquee-item">PRP / PRF <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Microneedling <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Nd-YAG Laser <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Hydra Facials Plus <span class="marquee-dot"></span></span>
+    <span class="marquee-item">BB / CC Glow <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Fillers &amp; Botox <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Thread Lifts <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Non-Surgical Fat Removal <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Lips &amp; Face Augmentation <span class="marquee-dot"></span></span>
+  </div>
+</div>
+
+<!-- ── ABOUT ────────────────────────────────────────────────── -->
+<section class="section about" id="about">
+  <div class="container">
+    <div class="about-grid">
+
+      <div class="about-images fade-up">
+        <img class="about-img-a" src="Before and after 2.jpg" alt="Skin Transformation Results">
+        <img class="about-img-b" src="Before and afte 3.jpg"  alt="Aesthetic Treatment in Progress">
+        <div class="about-badge">
+          <!-- minimal HMA monogram -->
+          <svg viewBox="0 0 52 52" fill="none">
+            <circle cx="26" cy="26" r="24" stroke="rgba(255,255,255,.2)" stroke-width="1.2"/>
+            <text x="50%" y="54%" text-anchor="middle" dominant-baseline="middle"
+              fill="rgba(255,255,255,.9)" font-family="Cormorant Garamond,Georgia,serif"
+              font-size="13" font-style="italic">HMA</text>
+          </svg>
+        </div>
+        <!-- rotating ring text -->
+        <svg class="about-ring" viewBox="0 0 120 120">
+          <defs>
+            <path id="circ" d="M 60,60 m -46,0 a 46,46 0 1,1 92,0 a 46,46 0 1,1 -92,0"/>
+          </defs>
+          <text>
+            <textPath href="#circ">
+              BEAUTY &amp; INNOVATION · WHERE THEY MEET · LET'S RETOUCH ·
+            </textPath>
+          </text>
+        </svg>
+      </div>
+
+      <div class="about-text fade-up">
+        <span class="section-label">About Us</span>
+        <h2 class="section-title">
+          <em>HM Aesthetic</em> is all about enhancing your <strong>natural beauty</strong>.
+        </h2>
+        <p>At HM Aesthetic Clinic — Health and Medicine Aesthetic Clinic — we bring world-class aesthetic treatments to both men and women. Our team of expert practitioners combines medical precision with artistic vision to deliver exceptional, natural-looking results.</p>
+        <p>From advanced laser therapies to non-surgical body sculpting, every treatment is tailored to your unique skin type, concerns, and goals. We believe true beauty is about confidence — and we're here to help you find yours.</p>
+
+        <div class="stats-row">
+          <div>
+            <div class="stat-num">500+</div>
+            <div class="stat-lbl">Happy Clients</div>
+          </div>
+          <div>
+            <div class="stat-num">14+</div>
+            <div class="stat-lbl">Treatments</div>
+          </div>
+          <div>
+            <div class="stat-num">100%</div>
+            <div class="stat-lbl">Safe &amp; Certified</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── TREATMENTS ───────────────────────────────────────────── -->
+<section class="treatments-section" id="treatments">
+  <div class="container">
+
+    <div class="treatments-header fade-up">
+      <div class="treatments-header-left">
+        <span class="section-label">Treatments</span>
+        <h2 class="section-title">
+          Our treatments not only <em>rejuvenate</em>,<br>but leave you feeling your <strong>most exquisite</strong> yet.
+        </h2>
+      </div>
+      <a href="https://wa.me/923411242777" class="btn-primary" target="_blank" rel="noopener">Book a Session</a>
+    </div>
+
+    <div class="cards-grid">
+
+      <!-- Laser -->
+      <div class="t-card fade-up">
+        <div class="t-icon">
+          <svg viewBox="0 0 44 44" fill="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <circle class="t-icon-line" cx="22" cy="22" r="9"/>
+            <line class="t-icon-line" x1="22" y1="2"  x2="22" y2="8"/>
+            <line class="t-icon-line" x1="22" y1="36" x2="22" y2="42"/>
+            <line class="t-icon-line" x1="2"  y1="22" x2="8"  y2="22"/>
+            <line class="t-icon-line" x1="36" y1="22" x2="42" y2="22"/>
+            <line class="t-icon-line" x1="8.1"  y1="8.1"  x2="12.4" y2="12.4"/>
+            <line class="t-icon-line" x1="31.6" y1="31.6" x2="35.9" y2="35.9"/>
+            <line class="t-icon-line" x1="35.9" y1="8.1"  x2="31.6" y2="12.4"/>
+            <line class="t-icon-line" x1="12.4" y1="31.6" x2="8.1"  y2="35.9"/>
+            <circle cx="22" cy="22" r="2.5" fill="#7B4FA0" stroke="none"/>
+          </svg>
+        </div>
+        <div class="t-name">Laser Treatments</div>
+        <div class="t-desc">Carbon Laser Peel &amp; Nd-YAG Laser — precision light therapy for skin resurfacing, pigmentation, and deep rejuvenation.</div>
+        <a href="#contact" class="t-link">Learn More
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <!-- Facials -->
+      <div class="t-card fade-up">
+        <div class="t-icon">
+          <svg viewBox="0 0 44 44" fill="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <path class="t-icon-line" d="M22 7C13.7 7 9 13 9 21c0 5.8 2.8 10.4 8 13.2V38h10v-3.8C33.2 31.4 36 26.8 36 21c0-8-4.7-14-14-14z"/>
+            <path class="t-icon-line" d="M16 23s1.8 3 6 3 6-3 6-3"/>
+            <circle class="t-icon-line" cx="17.5" cy="19" r="1.5"/>
+            <circle class="t-icon-line" cx="26.5" cy="19" r="1.5"/>
+            <path class="t-icon-line" d="M22 7V4M16 9l-2-3M28 9l2-3"/>
+          </svg>
+        </div>
+        <div class="t-name">Facial Treatments</div>
+        <div class="t-desc">Microneedling, Hydra Facials Plus, BB/CC Glow, Advance Brightening Peels, and Skin Whitening for luminous, radiant skin.</div>
+        <a href="#contact" class="t-link">Learn More
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <!-- Injectables -->
+      <div class="t-card fade-up">
+        <div class="t-icon">
+          <svg viewBox="0 0 44 44" fill="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <path class="t-icon-line" d="M9 35l5.5-5.5"/>
+            <path class="t-icon-line" d="M15 29.5L29 15.5l4 4L19 33.5l-4-4z"/>
+            <path class="t-icon-line" d="M29 15.5l-4-4 3-3 4 4-3 3z"/>
+            <path class="t-icon-line" d="M11 33l-3 3"/>
+            <path class="t-icon-line" d="M21.5 22.5l-8.5 8"/>
+            <path class="t-icon-line" d="M36 8l2 2-3.5 3.5-2-2 3.5-3.5z"/>
+          </svg>
+        </div>
+        <div class="t-name">Injectables</div>
+        <div class="t-desc">PRP/PRF therapy, Dermal Fillers, Botox, and Thread Lifts — precise injectable solutions for natural-looking rejuvenation.</div>
+        <a href="#contact" class="t-link">Learn More
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <!-- Body & Augmentation -->
+      <div class="t-card fade-up">
+        <div class="t-icon">
+          <svg viewBox="0 0 44 44" fill="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <ellipse class="t-icon-line" cx="22" cy="10" rx="4" ry="4.5"/>
+            <path class="t-icon-line" d="M15 18.5C15 14.5 18 11.5 22 11.5s7 3 7 7l-2 10H17l-2-9z"/>
+            <path class="t-icon-line" d="M17 28.5l-3 10.5M27 28.5l3 10.5"/>
+            <path class="t-icon-line" d="M15 23l-5 1.5M29 23l5 1.5"/>
+          </svg>
+        </div>
+        <div class="t-name">Body &amp; Augmentation</div>
+        <div class="t-desc">Non-Surgical Fat Removal, Nose Reshaping, and Lips &amp; Face Augmentations for sculpted, balanced contouring.</div>
+        <a href="#contact" class="t-link">Learn More
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Full treatments list -->
+    <div class="all-treatments fade-up">
+      <div class="all-treatments-title">All Treatments We Offer</div>
+      <ul class="treatments-list">
+        <li>Carbon Laser Peel</li>
+        <li>PRP / PRF Therapy</li>
+        <li>Microneedling</li>
+        <li>Nd-YAG Laser</li>
+        <li>Hydra Facials Plus</li>
+        <li>BB / CC Glow</li>
+        <li>Fillers</li>
+        <li>Botox</li>
+        <li>Thread Lifts</li>
+        <li>Non-Surgical Fat Removal</li>
+        <li>Advance Brightening Peels</li>
+        <li>Skin Whitening</li>
+        <li>Nose Reshaping</li>
+        <li>Lips &amp; Face Augmentations</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── WHY CHOOSE US ─────────────────────────────────────────── -->
+<section class="section why-us">
+  <div class="container">
+    <div class="why-center fade-up">
+      <span class="section-label">Why HM Aesthetic</span>
+      <h2 class="section-title">Where <em>science</em> meets <strong>artistry</strong></h2>
+      <p>Our aesthetic treatments are available to both male and female clients, combining cutting-edge technology with a deeply personal approach to care.</p>
+    </div>
+
+    <div class="features-grid">
+      <div class="feat fade-up">
+        <div class="feat-ico">
+          <svg viewBox="0 0 30 30" fill="none" stroke="var(--purple)" stroke-width="1.5" stroke-linecap="round">
+            <path d="M15 3l2.8 8.6H27l-7.4 5.4 2.8 8.6L15 20.6l-7.4 5.4 2.8-8.6L3 11.6h9.2L15 3z"/>
+          </svg>
+        </div>
+        <h3>Expert Practitioners</h3>
+        <p>Our certified aesthetic specialists bring years of clinical expertise and artistic precision to every single treatment session.</p>
+      </div>
+      <div class="feat fade-up">
+        <div class="feat-ico">
+          <svg viewBox="0 0 30 30" fill="none" stroke="var(--purple)" stroke-width="1.5" stroke-linecap="round">
+            <circle cx="15" cy="15" r="12"/>
+            <path d="M15 8v7l4.5 2.5"/>
+          </svg>
+        </div>
+        <h3>Advanced Technology</h3>
+        <p>We invest in the latest FDA-approved equipment and techniques to ensure the safest, most effective, and longest-lasting results.</p>
+      </div>
+      <div class="feat fade-up">
+        <div class="feat-ico">
+          <svg viewBox="0 0 30 30" fill="none" stroke="var(--purple)" stroke-width="1.5" stroke-linecap="round">
+            <path d="M15 4C8.9 4 4 8.9 4 15s4.9 11 11 11 11-4.9 11-11S21.1 4 15 4z"/>
+            <path d="M10 15l3.5 3.5 7.5-7.5"/>
+          </svg>
+        </div>
+        <h3>Personalized Care</h3>
+        <p>Every treatment plan is fully customized to your unique skin type, concerns, and aesthetic goals for optimal, tailored results.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── BEFORE / AFTER ───────────────────────────────────────── -->
+<section class="section ba-section" id="results">
+  <div class="container">
+    <div class="fade-up">
+      <span class="section-label">Real Results</span>
+      <h2 class="section-title"><em>Transformations</em> that <strong>speak for themselves</strong></h2>
+    </div>
+    <div class="ba-grid">
+      <div class="ba-card fade-up">
+        <img src="before and after 1.jpg" alt="Glass Skin Facial — Before &amp; After">
+        <div class="ba-label">Glass Skin Facial</div>
+      </div>
+      <div class="ba-card fade-up">
+        <img src="Before and after 2.jpg" alt="Skin Rejuvenation — Before &amp; After">
+        <div class="ba-label">Skin Rejuvenation</div>
+      </div>
+      <div class="ba-card fade-up">
+        <img src="Before and afte 3.jpg" alt="Advanced Treatment — Before &amp; After">
+        <div class="ba-label">Advanced Treatment</div>
+      </div>
+      <div class="ba-card fade-up">
+        <img src="Before and after 4.jpg" alt="Aesthetic Enhancement — Before &amp; After">
+        <div class="ba-label">Aesthetic Enhancement</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TESTIMONIALS ─────────────────────────────────────────── -->
+<section class="testi-section">
+  <div class="container">
+    <div style="text-align:center;max-width:560px;margin:0 auto" class="fade-up">
+      <span class="section-label">Testimonials</span>
+      <h2 class="section-title">What our <em>clients</em> say</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card fade-up">
+        <div class="stars">★★★★★</div>
+        <p class="testi-quote">"The Carbon Laser Peel completely transformed my skin. After just two sessions my dark spots faded and my complexion is glowing. The staff is incredibly professional and made me feel so comfortable throughout."</p>
+        <div class="testi-author">Sarah M. — Laser Treatment</div>
+      </div>
+      <div class="testi-card fade-up">
+        <div class="stars">★★★★★</div>
+        <p class="testi-quote">"I had my lip fillers done at HM Aesthetic and the results are absolutely natural. The doctor listened to exactly what I wanted and delivered perfection. Highly recommend to everyone looking for quality care!"</p>
+        <div class="testi-author">Ayesha K. — Lip Fillers</div>
+      </div>
+      <div class="testi-card fade-up">
+        <div class="stars">★★★★★</div>
+        <p class="testi-quote">"The Hydra Facial was the best skin treatment I've ever experienced. My skin felt brand new and the glow lasted weeks. The clinic is clean, modern and the entire team is truly exceptional in every way."</p>
+        <div class="testi-author">Zara F. — Hydra Facial</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA / BOOKING ────────────────────────────────────────── -->
+<section class="cta-section" id="contact">
+  <div class="container">
+    <div class="cta-inner">
+      <div class="cta-image fade-up">
+        <img src="Before and after 4.jpg" alt="Book your appointment at HM Aesthetic Clinic">
+      </div>
+      <div class="cta-content fade-up">
+        <span class="section-label">Book an Appointment</span>
+        <h2 class="section-title">
+          <em>Revamp</em> Your<br>Skin Journey with<br><strong>HM Aesthetic.</strong>
+        </h2>
+        <p>Ready to begin your transformation? Our expert team is available Saturday–Thursday, 10AM–8PM. Call or WhatsApp us to schedule your personalized consultation — treatments available for both men and women.</p>
+
+        <div class="cta-detail">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="1.8" stroke-linecap="round">
+            <path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7 12.8 12.8 0 00.7 2.8 2 2 0 01-.4 2.1L8.1 9.9a16 16 0 006 6l1.3-1.3a2 2 0 012.1-.4 12.8 12.8 0 002.8.7A2 2 0 0122 16.9z"/>
+          </svg>
+          +92 341 1242777
+        </div>
+        <div class="cta-detail" style="margin-bottom:2rem">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="1.8" stroke-linecap="round">
+            <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+          </svg>
+          Saturday – Thursday, 10:00 AM – 8:00 PM
+        </div>
+        <a href="https://wa.me/923411242777" class="btn-primary" target="_blank" rel="noopener">Book on WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ───────────────────────────────────────────────── -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+
+      <div>
+        <img src="Logo-removebg-preview.png" class="footer-logo" alt="HM Aesthetic Clinic">
+        <p class="footer-tagline">"Let's Retouch" — Bringing out your most radiant, confident self with expert aesthetic care for both men and women.</p>
+        <div class="footer-contact">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+            <path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7 12.8 12.8 0 00.7 2.8 2 2 0 01-.4 2.1L8.1 9.9a16 16 0 006 6l1.3-1.3a2 2 0 012.1-.4 12.8 12.8 0 002.8.7A2 2 0 0122 16.9z"/>
+          </svg>
+          +92 341 1242777
+        </div>
+        <div class="footer-contact">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 1118 0z"/><circle cx="12" cy="10" r="3"/>
+          </svg>
+          Lahore, Pakistan
+        </div>
+      </div>
+
+      <div>
+        <div class="footer-heading">Treatments</div>
+        <ul class="f-links">
+          <li><a href="#treatments">Carbon Laser Peel</a></li>
+          <li><a href="#treatments">PRP / PRF Therapy</a></li>
+          <li><a href="#treatments">Microneedling</a></li>
+          <li><a href="#treatments">Hydra Facials Plus</a></li>
+          <li><a href="#treatments">Fillers &amp; Botox</a></li>
+          <li><a href="#treatments">Thread Lifts</a></li>
+          <li><a href="#treatments">Non-Surgical Fat Removal</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="footer-heading">Quick Links</div>
+        <ul class="f-links">
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#treatments">All Treatments</a></li>
+          <li><a href="#results">Before &amp; After</a></li>
+          <li><a href="#contact">Book Appointment</a></li>
+        </ul>
+        <div style="margin-top:2rem">
+          <div class="footer-heading">Hours</div>
+          <p style="font-size:.82rem;line-height:2">Saturday – Thursday<br>10:00 AM – 8:00 PM<br>By Appointment Only</p>
+        </div>
+      </div>
+
+      <div>
+        <div class="footer-heading">Newsletter</div>
+        <p style="font-size:.82rem;margin-bottom:1rem;line-height:1.75">Sign up for exclusive offers, skincare tips, and treatment updates.</p>
+        <div class="nl-form">
+          <input type="email" placeholder="your@email.com" aria-label="Email address">
+          <button type="button">GO</button>
+        </div>
+        <div class="footer-heading">Follow Us</div>
+        <div class="social-row">
+          <a href="#" aria-label="Instagram">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+              <rect x="2" y="2" width="20" height="20" rx="5"/>
+              <circle cx="12" cy="12" r="5"/>
+              <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/>
+            </svg>
+          </a>
+          <a href="#" aria-label="Facebook">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+              <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
+            </svg>
+          </a>
+          <a href="https://wa.me/923411242777" aria-label="WhatsApp" target="_blank" rel="noopener">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17.5 14.3c-.3 0-1.8-.2-2.1-.2-.4 0-.6.2-1.4.6l-.7.7c-1.4-.8-2.5-1.9-3.4-3.2-.8-1.3-1.3-2.7-1.3-3.5l.8-.7c.5-.4.7-.6.6-1.5l-.2-2C10.2 4.7 9.5 4 8.6 4H6a2 2 0 00-1.9 2C4.5 14.6 9.4 19.5 17.1 19.9c1.1.1 2-.8 2-1.9v-1.8c0-1-.7-1.8-1.6-1.9zM12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.7 1.4 5.3L2 22l4.8-1.3A9.9 9.9 0 0012 22c5.5 0 10-4.5 10-10S17.5 2 12 2z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2025 HM Aesthetic Clinic. All Rights Reserved.</span>
+      <span>Health &amp; Medicine Aesthetic Clinic — Lahore, Pakistan</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ── WHATSAPP FLOAT ────────────────────────────────────────── -->
+<a href="https://wa.me/923411242777" class="wa-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.5 14.3c-.3 0-1.8-.2-2.1-.2-.4 0-.6.2-1.4.6l-.7.7c-1.4-.8-2.5-1.9-3.4-3.2-.8-1.3-1.3-2.7-1.3-3.5l.8-.7c.5-.4.7-.6.6-1.5l-.2-2C10.2 4.7 9.5 4 8.6 4H6a2 2 0 00-1.9 2C4.5 14.6 9.4 19.5 17.1 19.9c1.1.1 2-.8 2-1.9v-1.8c0-1-.7-1.8-1.6-1.9zM12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.7 1.4 5.3L2 22l4.8-1.3A9.9 9.9 0 0012 22c5.5 0 10-4.5 10-10S17.5 2 12 2z"/>
+  </svg>
+</a>
+
+<script>
+  // Nav scroll shadow
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  }, { passive: true });
+
+  // Fade-up on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
